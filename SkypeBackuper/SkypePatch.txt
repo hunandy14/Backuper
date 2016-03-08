@@ -1,1 +1,0 @@
-SkypePatch="%USERPROFILE%\AppData\Roaming\Skype" 

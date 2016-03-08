@@ -9,7 +9,7 @@ call :IsAdmin
 Echo ============================================
 Echo 注意
 Echo ============================================
-Echo   請確認目錄內只有一個 [Skype********.rar]
+Echo   請確認目錄內只有一個 [Line********.rar]
 Echo   為避免意外，執行後請自行選擇覆蓋
 Echo ============================================
 
@@ -20,10 +20,10 @@ xcopy WinRAR.exe %SystemRoot% /Y
 
 taskkill /f /im line.exe >> %Temp%\display.txt
 
-cd %USERPROFILE%\AppData\Roaming\
-WinRAR.exe x %~dp0\Skype********.rar -r
+cd %USERPROFILE%\AppData\Local
+WinRAR.exe x %~dp0\Line********.rar -r
 
-start skype
+start "" "%ProgramFiles(x86)%\LINE\LINE.exe"
 Rem===========================================================
 Exit
 
