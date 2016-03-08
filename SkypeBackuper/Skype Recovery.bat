@@ -23,7 +23,7 @@ taskkill /f /im Skype.exe >> %Temp%\display.txt
 cd %USERPROFILE%\AppData\Roaming\
 WinRAR.exe x %~dp0\Skype********.rar -r
 
-start skype
+start "" skype
 Rem===========================================================
 Exit
 

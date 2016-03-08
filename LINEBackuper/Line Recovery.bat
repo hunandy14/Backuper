@@ -6,21 +6,24 @@ Rem 確認是否為管理員權限
 call :IsAdmin
 
 
+Echo ============================================
+Echo 注意
+Echo ============================================
+Echo   請確認目錄內只有一個 [Skype********.rar]
+Echo   為避免意外，執行後請自行選擇覆蓋
+Echo ============================================
+
+pause
 Rem===========================================================
 cd %ProgramFiles%\WinRAR
 xcopy WinRAR.exe %SystemRoot% /Y
 
-taskkill /f /im Skype.exe >> %Temp%\display.txt
+taskkill /f /im line.exe >> %Temp%\display.txt
 
-cd %USERPROFILE%\AppData\Roaming
-WinRAR.exe A %~dp0\Skype.rar Skype u –r -inul -m5 -agYYYYMMDD
+cd %USERPROFILE%\AppData\Roaming\
+WinRAR.exe x %~dp0\Skype********.rar -r
 
-cd %~dp0
-Echo SkypePatch="%%USERPROFILE%%\AppData\Roaming\Skype" > SkypePatch.txt
-WinRAR.exe c -zSkypePatch.txt Skype.rar -agYYYYMMDD
-WinRAR.exe rr3% Skype.rar -agYYYYMMDD
-
-start "" skype
+start skype
 Rem===========================================================
 Exit
 

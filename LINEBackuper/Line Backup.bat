@@ -1,5 +1,5 @@
 @Echo Off
-Title SkypeBackup & Color 1A
+Title LineBackup & Color 1A
 
 
 Rem 確認是否為管理員權限
@@ -10,17 +10,17 @@ Rem===========================================================
 cd %ProgramFiles%\WinRAR
 xcopy WinRAR.exe %SystemRoot% /Y
 
-taskkill /f /im Skype.exe >> %Temp%\display.txt
+taskkill /f /im line.exe >> %Temp%\linelog.txt
 
-cd %USERPROFILE%\AppData\Roaming
-WinRAR.exe A %~dp0\Skype.rar Skype u –r -inul -m5 -agYYYYMMDD
+cd %USERPROFILE%\AppData\Local
+WinRAR.exe A %~dp0\Line.rar LINE u –r -inul -m5 -agYYYYMMDD
 
 cd %~dp0
-Echo SkypePatch="%%USERPROFILE%%\AppData\Roaming\Skype" > SkypePatch.txt
-WinRAR.exe c -zSkypePatch.txt Skype.rar -agYYYYMMDD
-WinRAR.exe rr3% Skype.rar -agYYYYMMDD
+Echo LinePatch="%%USERPROFILE%%\AppData\Local\LINE" > LinePatch.txt
+WinRAR.exe c -zLinePatch.txt Line.rar -agYYYYMMDD
+WinRAR.exe rr3% Line.rar -agYYYYMMDD
 
-start "" skype
+start "" "%ProgramFiles(x86)%\LINE\LINE.exe"
 Rem===========================================================
 Exit
 
