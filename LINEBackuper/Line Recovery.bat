@@ -10,20 +10,48 @@ Echo ============================================
 Echo 注意
 Echo ============================================
 Echo   請確認目錄內只有一個 [Line********.rar]
-Echo   為避免意外，執行後請自行選擇覆蓋
+Echo.
+Echo   **確認執行後覆蓋現有檔案，請確認無誤**
+Echo.
+Echo   為了避免意外執行後會自動備份，檔名為LiBK
+Echo   如發生意外，請手動還原到該路徑
 Echo ============================================
-
 pause
-Rem===========================================================
-cd %ProgramFiles%\WinRAR
-xcopy WinRAR.exe %SystemRoot% /Y
 
+
+Rem===========================================================
+
+Echo 請耐心等候正在還原中....
+
+::設定環境變數
+::cd %ProgramFiles%\WinRAR
+::xcopy WinRAR.exe %SystemRoot% /Y
+path=%path%;C:\Program Files\WinRAR;
+
+::關閉執行程序
 taskkill /f /im line.exe >> %Temp%\display.txt
 
-cd %USERPROFILE%\AppData\Local
-WinRAR.exe x %~dp0\Line********.rar -r
 
+
+::防呆備份檔案
+cd %USERPROFILE%\AppData\Local
+rar A %~dp0\LiBK.rar LINE u –r -inul -m5 -agYYYYMMDD-nn
+
+::加入註解與修復紀錄3%
+cd %~dp0
+Echo LinePatch="%%USERPROFILE%%\AppData\Local\LINE" > LinePatch.txt
+rar c -zLinePatch.txt LiBK.rar -agYYYYMMDD-nn
+rar rr3p LiBK.rar -agYYYYMMDD-nn
+
+
+
+::解壓縮檔案到指定位置
+cd %USERPROFILE%\AppData\Local
+rar x %~dp0\*Line*.rar -r -o+
+
+::重新啟動
 start "" "%ProgramFiles(x86)%\LINE\LINE.exe"
+pause
 Rem===========================================================
 Exit
 

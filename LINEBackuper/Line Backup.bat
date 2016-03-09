@@ -7,20 +7,31 @@ call :IsAdmin
 
 
 Rem===========================================================
-cd %ProgramFiles%\WinRAR
-xcopy WinRAR.exe %SystemRoot% /Y
+Echo 請耐心等候正在備份中....
 
+::設定環境變數
+::cd %ProgramFiles%\WinRAR
+::xcopy WinRAR.exe %SystemRoot% /Y
+path=%path%;C:\Program Files\WinRAR;
+
+::關閉執行程序
 taskkill /f /im line.exe >> %Temp%\linelog.txt
 
+::備份檔案
 cd %USERPROFILE%\AppData\Local
-WinRAR.exe A %~dp0\Line.rar LINE u –r -inul -m5 -agYYYYMMDD
+rar A %~dp0\%username%-Line.rar LINE u –r -inul -m5 -agYYYYMMDD
 
+::加入註解與修復紀錄3%
 cd %~dp0
 Echo LinePatch="%%USERPROFILE%%\AppData\Local\LINE" > LinePatch.txt
-WinRAR.exe c -zLinePatch.txt Line.rar -agYYYYMMDD
-WinRAR.exe rr3% Line.rar -agYYYYMMDD
+rar c -zLinePatch.txt %username%-Line.rar -agYYYYMMDD
+rar rr3p %username%-Line.rar -agYYYYMMDD
 
+::重新啟動
 start "" "%ProgramFiles(x86)%\LINE\LINE.exe"
+
+Echo 備份完畢
+Pause
 Rem===========================================================
 Exit
 
