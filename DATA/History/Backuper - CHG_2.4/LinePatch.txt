@@ -1,0 +1,1 @@
+LinePatch = "%USERPROFILE%\AppData\Local\LINE" 
