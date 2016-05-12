@@ -19,12 +19,12 @@ start "" "%ProgramFiles(x86)%\LINE\LINE.exe"
 taskkill /f /im line.exe >> %Temp%\linelog.txt
 
 ::備份檔案
-cd %USERPROFILE%\AppData\Local
-rar A %~dp0\%username%-Line.rar LINE u –r -inul -m5 -agYYYYMMDD
+cd "%USERPROFILE%\AppData\Local"
+rar A "%~dp0\%username%-Line.rar" LINE u –r -inul -m5 -agYYYYMMDD
 
 ::加入註解與修復紀錄3%
 cd %~dp0
-Echo LinePatch="%%USERPROFILE%%\AppData\Local\LINE" > LinePatch.txt
+Echo LinePatch = "%%USERPROFILE%%\AppData\Local\LINE" > LinePatch.txt
 rar c -zLinePatch.txt %username%-Line.rar -agYYYYMMDD
 rar rr3p %username%-Line.rar -agYYYYMMDD
 

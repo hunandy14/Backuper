@@ -19,27 +19,27 @@ pause
 Echo 請耐心等候正在還原中....
 
 ::設定環境變數
-::cd %ProgramFiles%\WinRAR
-::xcopy WinRAR.exe %SystemRoot% /Y
 path=%path%;C:\Program Files\WinRAR;
+::cd "%ProgramFiles%\WinRAR"
+::xcopy WinRAR.exe %SystemRoot% /Y
 
 ::關閉執行程序
 start "" "%ProgramFiles(x86)%\LINE\LINE.exe"
 taskkill /f /im line.exe >> %Temp%\display.txt
 
 ::防呆備份檔案
-cd %USERPROFILE%\AppData\Local
-rar A %~dp0\LiBK.rar LINE u –r -inul -m5 -agYYYYMMDD-nn
+cd "%USERPROFILE%\AppData\Local"
+rar A "%~dp0\LiBK.rar" LINE u –r -inul -m5 -agYYYYMMDD-nn
 
 ::加入註解與修復紀錄3%
-cd %~dp0
-Echo LinePatch="%%USERPROFILE%%\AppData\Local\LINE" > LinePatch.txt
+cd "%~dp0"
+Echo LinePatch = "%%USERPROFILE%%\AppData\Local\LINE" > LinePatch.txt
 rar c -zLinePatch.txt LiBK.rar -agYYYYMMDD-nn
 rar rr3p LiBK.rar -agYYYYMMDD-nn
 
 ::解壓縮檔案到指定位置
-cd %USERPROFILE%\AppData\Local
-rar x %~dp0\*Line*.rar -r -o+
+cd "%USERPROFILE%\AppData\Local"
+rar x "%~dp0\*Line*.rar" -r -o+
 
 ::重新啟動
 start "" "%ProgramFiles(x86)%\LINE\LINE.exe"

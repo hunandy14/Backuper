@@ -19,33 +19,33 @@ pause
 Echo 請耐心等候正在還原中....
 
 ::設定環境變數
-::cd %ProgramFiles%\WinRAR
-::xcopy WinRAR.exe %SystemRoot% /Y
 path=%path%;C:\Program Files\WinRAR;
+::cd "%ProgramFiles%\WinRAR"
+::xcopy WinRAR.exe %SystemRoot% /Y
 
 ::關閉執行程序
 start "" skype
 taskkill /f /im Skype.exe >> %Temp%\display.txt
 
 ::防呆備份檔案
-cd %USERPROFILE%\AppData\Roaming
-rar A %~dp0\SkBK.rar Skype u –r -inul -m5 -agYYYYMMDD-nn
+cd "%USERPROFILE%\AppData\Roaming"
+rar A "%~dp0\SkBK.rar" Skype u –r -inul -m5 -agYYYYMMDD-nn
 
 ::加入註解與修復紀錄3%
-cd %~dp0
-Echo SkypePatch="%%USERPROFILE%%\AppData\Roaming\Skype" > SkypePatch.txt
+cd "%~dp0"
+Echo SkypePatch = "%%USERPROFILE%%\AppData\Roaming\Skype" > SkypePatch.txt
 rar c -zSkypePatch.txt SkBK.rar -agYYYYMMDD-nn
 rar rr3p SkBK.rar -agYYYYMMDD-nn
 
 ::解壓縮檔案到指定位置
-cd %USERPROFILE%\AppData\Roaming\
-rar x %~dp0\*Skype*.rar -r -o+
+cd "%USERPROFILE%\AppData\Roaming\"
+rar x "%~dp0\*Skype*.rar" -r -o+
 
 ::重新啟動
 start "" skype
 Echo ============================================
 Echo 還原成功，感謝您的使用
-Echo 有使用上的問題，或建議歡迎回報
+Echo 有使用上的問題，或建議歡迎回報給我
 Echo 軟件最新版與回報請見底下Gihub網址
 Echo [https://github.com/hunandy14/Backuper]
 Echo ============================================

@@ -10,21 +10,21 @@ Echo .
 Echo 請耐心等候正在備份中....
 
 ::設定環境變數
-::cd %ProgramFiles%\WinRAR
-::xcopy WinRAR.exe %SystemRoot% /Y
 path=%path%;C:\Program Files\WinRAR;
+::cd "%ProgramFiles%\WinRAR"
+::xcopy WinRAR.exe %SystemRoot% /Y
 
 ::關閉執行程序
 start "" skype
 taskkill /f /im Skype.exe >> %Temp%\display.txt
 
 ::備份檔案
-cd %USERPROFILE%\AppData\Roaming
-rar A %~dp0\%username%-Skype.rar Skype u –r -inul -m5 -agYYYYMMDD
+cd "%USERPROFILE%\AppData\Roaming"
+rar A "%~dp0\%username%-Skype.rar" Skype u –r -inul -m5 -agYYYYMMDD
 
 ::加入註解與修復紀錄3%
-cd %~dp0
-Echo SkypePatch="%%USERPROFILE%%\AppData\Roaming\Skype" > SkypePatch.txt
+cd "%~dp0"
+Echo SkypePatch = "%%USERPROFILE%%\AppData\Roaming\Skype" > SkypePatch.txt
 rar c -zSkypePatch.txt %username%-Skype.rar -agYYYYMMDD
 rar rr3p %username%-Skype.rar -agYYYYMMDD
 
