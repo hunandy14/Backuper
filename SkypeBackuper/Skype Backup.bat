@@ -1,5 +1,5 @@
 @Echo Off
-Title SkypeBackup & Color 1A
+Title SkypeBackuper & Color 1A
 
 Rem 確認是否為管理員權限
 call :IsAdmin
@@ -25,8 +25,8 @@ rar A "%~dp0\%username%-Skype.rar" Skype u –r -inul -m5 -agYYYYMMDD
 ::加入註解與修復紀錄3%
 cd "%~dp0"
 Echo SkypePatch = "%%USERPROFILE%%\AppData\Roaming\Skype" > SkypePatch.txt
-rar c -zSkypePatch.txt %username%-Skype.rar -agYYYYMMDD
-rar rr3p %username%-Skype.rar -agYYYYMMDD
+rar c -zSkypePatch.txt "%~dp0\%username%-Skype.rar" -agYYYYMMDD
+rar rr3p "%~dp0\%username%-Skype.rar" -agYYYYMMDD
 
 ::重新啟動
 start "" skype

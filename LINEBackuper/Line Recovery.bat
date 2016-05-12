@@ -1,5 +1,5 @@
 @Echo Off
-Title LineBackup & Color 1A
+Title LineBackuper & Color 1A
 
 Rem 確認是否為管理員權限
 call :IsAdmin

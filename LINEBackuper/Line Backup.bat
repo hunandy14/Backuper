@@ -1,5 +1,5 @@
 @Echo Off
-Title LineBackup & Color 1A
+Title LineBackuper & Color 1A
 
 Rem 確認是否為管理員權限
 call :IsAdmin
@@ -23,10 +23,10 @@ cd "%USERPROFILE%\AppData\Local"
 rar A "%~dp0\%username%-Line.rar" LINE u –r -inul -m5 -agYYYYMMDD
 
 ::加入註解與修復紀錄3%
-cd %~dp0
+cd "%~dp0"
 Echo LinePatch = "%%USERPROFILE%%\AppData\Local\LINE" > LinePatch.txt
-rar c -zLinePatch.txt %username%-Line.rar -agYYYYMMDD
-rar rr3p %username%-Line.rar -agYYYYMMDD
+rar c -zLinePatch.txt "%~dp0\%username%-Line.rar" -agYYYYMMDD
+rar rr3p "%~dp0\%username%-Line.rar" -agYYYYMMDD
 
 ::重新啟動
 start "" "%ProgramFiles(x86)%\LINE\LINE.exe"
