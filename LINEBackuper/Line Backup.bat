@@ -15,6 +15,7 @@ Echo 請耐心等候正在備份中....
 path=%path%;C:\Program Files\WinRAR;
 
 ::關閉執行程序
+start "" "%ProgramFiles(x86)%\LINE\LINE.exe"
 taskkill /f /im line.exe >> %Temp%\linelog.txt
 
 ::備份檔案
@@ -29,8 +30,12 @@ rar rr3p %username%-Line.rar -agYYYYMMDD
 
 ::重新啟動
 start "" "%ProgramFiles(x86)%\LINE\LINE.exe"
-
-Echo 備份完畢
+Echo ============================================
+Echo 備份成功，感謝您的使用
+Echo 有使用上的問題，或建議歡迎回報
+Echo 軟件最新版與回報請見底下Gihub網址
+Echo [https://github.com/hunandy14/Backuper]
+Echo ============================================
 Pause
 Exit
 ::===========================================================
