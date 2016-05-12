@@ -1,32 +1,39 @@
 @Echo Off
 Title SkypeBackup & Color 1A
 
-
 Rem 確認是否為管理員權限
 call :IsAdmin
+::===========================================================
+Echo 程序已經開始備份，備份位置會在此程序目錄內
+Echo 　如果卡太久，嘗試按[Tab鍵]繼續
+Echo .
+Echo 請耐心等候正在備份中....
 
+::設定環境變數
+::cd %ProgramFiles%\WinRAR
+::xcopy WinRAR.exe %SystemRoot% /Y
+path=%path%;C:\Program Files\WinRAR;
 
-Rem===========================================================
-cd %ProgramFiles%\WinRAR
-xcopy WinRAR.exe %SystemRoot% /Y
-
+::關閉執行程序
 taskkill /f /im Skype.exe >> %Temp%\display.txt
 
+::備份檔案
 cd %USERPROFILE%\AppData\Roaming
-WinRAR.exe A %~dp0\Skype.rar Skype u –r -inul -m5 -agYYYYMMDD
+rar A %~dp0\%username%-Skype.rar Skype u –r -inul -m5 -agYYYYMMDD
 
+::加入註解與修復紀錄3%
 cd %~dp0
 Echo SkypePatch="%%USERPROFILE%%\AppData\Roaming\Skype" > SkypePatch.txt
-WinRAR.exe c -zSkypePatch.txt Skype.rar -agYYYYMMDD
-WinRAR.exe rr3% Skype.rar -agYYYYMMDD
+rar c -zSkypePatch.txt %username%-Skype.rar -agYYYYMMDD
+rar rr3p %username%-Skype.rar -agYYYYMMDD
 
+::重新啟動
 start "" skype
-Rem===========================================================
+
+Echo 備份完畢
+Pause
 Exit
-
-
-
-
+::===========================================================
 :IsAdmin
 Reg.exe query "HKU\S-1-5-19\Environment"
 If Not %ERRORLEVEL% EQU 0 (
