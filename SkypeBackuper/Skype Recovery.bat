@@ -45,7 +45,7 @@ rar x %~dp0\*Skype*.rar -r -o+
 start "" skype
 Echo ============================================
 Echo 還原成功，感謝您的使用
-Echo 有使用上的問題，或建議歡迎回報給我
+Echo 有使用上的問題，或建議歡迎回報
 Echo 軟件最新版與回報請見底下Gihub網址
 Echo [https://github.com/hunandy14/Backuper]
 Echo ============================================
