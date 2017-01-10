@@ -1,9 +1,11 @@
 @Echo Off
-Title LineBackuper & Color 1A
+Title LineBackuper V1.0.1 & Color 1A
 
 Rem 確認是否為管理員權限
 call :IsAdmin
 ::===========================================================
+Echo 備份程序即將開始，備份時會關閉LINE
+pause
 Echo 程序已經開始備份，備份位置會在此程序目錄內
 Echo 　如果卡太久，嘗試按[Tab鍵]繼續
 Echo .
@@ -14,8 +16,11 @@ Echo 請耐心等候正在備份中....
 ::xcopy WinRAR.exe %SystemRoot% /Y
 path=%path%;C:\Program Files\WinRAR;
 
+::Lin主程式位置
+set Line_bin=%USERPROFILE%\AppData\Local\LINE\bin
+
 ::關閉執行程序
-start "" "%ProgramFiles(x86)%\LINE\LINE.exe"
+start "" "%Line_bin%"
 taskkill /f /im line.exe >> %Temp%\linelog.txt
 
 ::備份檔案
@@ -29,7 +34,7 @@ rar c -zLinePatch.txt "%~dp0\%username%-Line.rar" -agYYYYMMDD
 rar rr3p "%~dp0\%username%-Line.rar" -agYYYYMMDD
 
 ::重新啟動
-start "" "%ProgramFiles(x86)%\LINE\LINE.exe"
+start "" "%Line_bin%"
 Echo ============================================
 Echo 備份成功，感謝您的使用
 Echo 有使用上的問題，或建議歡迎回報

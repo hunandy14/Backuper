@@ -23,8 +23,11 @@ path=%path%;C:\Program Files\WinRAR;
 ::cd "%ProgramFiles%\WinRAR"
 ::xcopy WinRAR.exe %SystemRoot% /Y
 
+::Lin主程式位置
+set Line_bin=%USERPROFILE%\AppData\Local\LINE\bin
+
 ::關閉執行程序
-start "" "%ProgramFiles(x86)%\LINE\LINE.exe"
+start "" "%Line_bin%"
 taskkill /f /im line.exe >> %Temp%\display.txt
 
 ::防呆備份檔案
@@ -42,7 +45,7 @@ cd "%USERPROFILE%\AppData\Local"
 rar x "%~dp0\*Line*.rar" -r -o+
 
 ::重新啟動
-start "" "%ProgramFiles(x86)%\LINE\LINE.exe"
+start "" "%Line_bin%"
 Echo ============================================
 Echo 還原成功，感謝您的使用
 Echo 有使用上的問題，或建議歡迎回報
